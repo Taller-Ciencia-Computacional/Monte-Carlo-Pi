@@ -1,4 +1,5 @@
 import numpy as np
+import random as rd
 from pylab import *
 import matplotlib.pyplot as plt
 total = 0
