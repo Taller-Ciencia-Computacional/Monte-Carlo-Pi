@@ -4,10 +4,13 @@ import matplotlib.pyplot as pyplot
 
 pi = 0
 file_opened = 0
+alist = []
 
 def files():
     global file
     global file_opened
+    global file_name
+    
     if file_opened == 0:
         file_name = input("Enter file name: ")
         file_name = file_name + ".txt"
@@ -28,6 +31,7 @@ def distance():
 
 def algorithm():
     global pi
+    
     number = 100000
     in_area = 0
     for i in range(number):
@@ -39,15 +43,28 @@ def algorithm():
 def pi_store():
     global pi
     global file
+    global pi_txt
+    
     if pi == 0:
         print("Empty variable.")
     else:
-        pi_txt = str(pi) + " "
-        print(pi_txt)
+        pi_txt = str(pi) + "\n"
         file.write(pi_txt)
 
 def average():
-    print("Not done... Yet.")
+    global alist
+    global file
+    global pi_txt
+    global file_name
+    
+    file.close()
+    file = open(file_name, "r")
+    for aline in file:
+        # Fix
+        values = aline.split()
+        alist = alist + values
+    print(values)
+    
 
 def App():
     choices = ["0", "1", "2", "3"]
@@ -68,7 +85,10 @@ def App():
             files()
             average()
         if choice == "0":
+            if file_opened == 1:
+                file.close()
             exit()
         choice = ""
 
 App()
+        
